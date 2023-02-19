@@ -16,6 +16,7 @@ public class LoseZoneScript : MonoBehaviour
 	[SerializeField] private GameObject Spawner3;
 	[SerializeField] private GameObject Spawner4;
 	[SerializeField] private GameObject Orange;
+	[SerializeField] private GameObject Camera;
 	private List<GameObject> Spawner1Oranges;
 	private List<GameObject> Spawner2Oranges;
 	private List<GameObject> Spawner3Oranges;
@@ -23,7 +24,7 @@ public class LoseZoneScript : MonoBehaviour
 
 	static public float time = 0f;
 	static public bool isGame = true;
-
+	bool isPaused = false;
 	// Start is called before the first frame update
 	private void FixedUpdate()
 	{
@@ -41,6 +42,20 @@ public class LoseZoneScript : MonoBehaviour
 	}
 	private void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Space) && isGame )
+		{
+			
+			
+			if (isPaused)
+			{
+				Camera.GetComponent<AudioSource>().Play();
+			}
+			else
+			{
+				Camera.GetComponent<AudioSource>().Pause();
+			}
+			isPaused= !isPaused;
+		}
 		if (Input.GetKeyDown(KeyCode.Space) && Lives == 0)
 		{
 			Points.GetComponent<Text>().text = "0";

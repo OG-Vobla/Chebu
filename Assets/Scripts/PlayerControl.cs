@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
 	[SerializeField] private GameObject LeftDownPos;
 	[SerializeField] private GameObject RightUpPos;
 	[SerializeField] private GameObject RightDownPos;
-	
+	public static string Key;
 	private bool PlayerRight = false;
 	// Start is called before the first frame update
 	void Start()
@@ -19,12 +19,15 @@ public class PlayerControl : MonoBehaviour
 	}
 
 	// Update is called once per frame
-
+	public void PressKey(string key)
+	{
+		Key = key;
+	}
 	void Update()
     {
 		if (LoseZoneScript.isGame)
 		{
-			if (Input.GetKeyDown(KeyCode.A))
+			if (Input.GetKeyDown(KeyCode.A) || Key == "A")
 			{
 				if (PlayerRight)
 				{
@@ -32,7 +35,7 @@ public class PlayerControl : MonoBehaviour
 				}
 				transform.position = LeftDownPos.transform.position;
 			}
-			else if (Input.GetKeyDown(KeyCode.Q))
+			else if (Input.GetKeyDown(KeyCode.Q) || Key == "Q")
 			{
 				if (PlayerRight)
 				{
@@ -40,7 +43,7 @@ public class PlayerControl : MonoBehaviour
 				}
 				transform.position = LeftUpPos.transform.position;
 			}
-			else if (Input.GetKeyDown(KeyCode.E))
+			else if (Input.GetKeyDown(KeyCode.E) || Key == "E")
 			{
 				if (!PlayerRight)
 				{
@@ -48,7 +51,7 @@ public class PlayerControl : MonoBehaviour
 				}
 				transform.position = RightUpPos.transform.position;
 			}
-			else if (Input.GetKeyDown(KeyCode.D))
+			else if (Input.GetKeyDown(KeyCode.D) || Key == "D")
 			{
 				if (!PlayerRight)
 				{

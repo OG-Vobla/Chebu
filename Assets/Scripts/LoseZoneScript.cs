@@ -42,10 +42,10 @@ public class LoseZoneScript : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && isGame )
+		if ((Input.GetKeyDown(KeyCode.Space) || PlayerControl.Key == "Space") && isGame )
 		{
-			
-			
+
+			PlayerControl.Key = "";
 			if (isPaused)
 			{
 				Camera.GetComponent<AudioSource>().Play();
@@ -56,8 +56,9 @@ public class LoseZoneScript : MonoBehaviour
 			}
 			isPaused= !isPaused;
 		}
-		if (Input.GetKeyDown(KeyCode.Space) && Lives == 0)
+		if ((Input.GetKeyDown(KeyCode.Space) || PlayerControl.Key == "Space") && Lives == 0)
 		{
+			PlayerControl.Key = "";
 			Points.GetComponent<Text>().text = "0";
 			Instantiate(Live, LivesCal.transform);
 			Instantiate(Live, LivesCal.transform);
@@ -68,8 +69,9 @@ public class LoseZoneScript : MonoBehaviour
 			isGame = true;
 			StartCoroutine(SpawnOrange());
 		}
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) || PlayerControl.Key == "Escape")
 		{
+			PlayerControl.Key = "";
 			if (isGame)
 			{
 				isGame= false;
